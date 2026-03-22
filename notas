@@ -1,0 +1,34 @@
+
+na pasta raiz do projeto:
+    git init (e aqueles comandos para ligar o repositorio ao github)
+    ng new frontend
+    mkdir backend
+
+Configurar o Backend:
+    cd backend
+    npm init -y
+    npm install express cors dotenv
+    npm install -D typescript @types/node @types/express @types/cors @types/dotenv
+    npx tsc --init
+
+
+
+Abrir package.json do backend , e mudar linha 12 para "type": "module"
+O tsconfig.ts do backend: vinicius vai passar(moodle)
+
+voltar à raiz: cd ..
+
+touch .gitignore (só funciona no gitbash)
+    abrir o .gitingore e colocar;
+        node_modules/
+        .env
+
+
+
+No github:
+    Criar Repositorio
+    Adicionar branch protection(settings -> branch -> add clasic protection rule)
+        - Dar nome da branch (main)
+        - Require a pull request before merging
+        - Lock branch
+        - 
