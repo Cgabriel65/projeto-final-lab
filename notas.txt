@@ -22,13 +22,23 @@ touch .gitignore (só funciona no gitbash)
     abrir o .gitingore e colocar;
         node_modules/
         .env
+        dist/
 
 
 
 No github:
     Criar Repositorio
-    Adicionar branch protection(settings -> branch -> add clasic protection rule)
-        - Dar nome da branch (main)
+    Adicionar branch protection(settings -> branch -> add clasic protection rule): Para main e para a develop
+       - Dar nome da branch (main e develop)
         - Require a pull request before merging
         - Lock branch
-        - 
+        - Require status checks to pass before merging
+
+Para fazer depois:
+    Adicionar Action? Podemos usar template/copiar do projeto anterior
+    Fazer CI  
+    Fazer CD 
+    Criar Dockerfile (1 para frontend , 1 para backend)
+    Dockercompose na raíz(para unir os 2 dockerfiles)
+
+    
