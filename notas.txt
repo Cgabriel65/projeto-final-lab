@@ -34,6 +34,23 @@ No github:
         - Lock branch
         - Require status checks to pass before merging
 
+mkdir -p .github/workflows
+touch .github/workflows/ci.yml
+fazer o ci.yml
+
+
+no backend:
+    npm install -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+    fazer manualmente eslint.config.js
+
+no frontend:
+    ng add @angular-eslint/schematics
+    gera automaticamente eslint.config.js
+
+adicionar scripts nos package.json (ver se falta algo)
+
+
+
 Para fazer depois:
     Adicionar Action? Podemos usar template/copiar do projeto anterior
     Fazer CI  
