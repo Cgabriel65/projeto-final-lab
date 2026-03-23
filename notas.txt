@@ -1,0 +1,71 @@
+
+na pasta raiz do projeto:
+    git init (e aqueles comandos para ligar o repositorio ao github)
+    ng new frontend
+    mkdir backend
+
+Configurar o Backend:
+    cd backend
+    npm init -y
+    npm install express cors dotenv
+    npm install -D typescript @types/node @types/express @types/cors @types/dotenv
+    npx tsc --init
+
+
+
+Abrir package.json do backend , e mudar linha 12 para "type": "module"
+O tsconfig.ts do backend: vinicius vai passar(moodle)
+
+voltar à raiz: cd ..
+
+touch .gitignore (só funciona no gitbash)
+    abrir o .gitingore e colocar;
+        node_modules/
+        .env
+        dist/
+
+
+
+No github:
+    Criar Repositorio
+    Adicionar branch protection(settings -> branch -> add clasic protection rule): Para main e para a develop
+       - Dar nome da branch (main e develop)
+        - Require a pull request before merging
+        - Lock branch
+        - Require status checks to pass before merging
+
+mkdir -p .github/workflows
+touch .github/workflows/ci.yml
+fazer o ci.yml
+
+
+no backend:
+    npm install -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+    fazer manualmente eslint.config.js
+
+no frontend:
+    ng add @angular-eslint/schematics
+    gera automaticamente eslint.config.js
+
+adicionar scripts nos package.json (ver se falta algo)
+
+criar service no render e tirar as chaves
+cirar project no vercel e tirar as chaves
+    Como é um monorepo e vercel n deixa alterar o diretorio para a pasta frontend , temos de alterar:
+        angular.json ("outputPath": "dist/frontend")
+        criar vercel.json (garante que build do Angular acontece na pasta frontend e o output vai para dist/frontend)
+        
+
+implementar cd e ci no msm yml
+
+
+
+
+Para fazer depois:
+    Adicionar Action? Podemos usar template/copiar do projeto anterior
+    Fazer CI  
+    Fazer CD 
+    Criar Dockerfile (1 para frontend , 1 para backend)
+    Dockercompose na raíz(para unir os 2 dockerfiles)
+
+    

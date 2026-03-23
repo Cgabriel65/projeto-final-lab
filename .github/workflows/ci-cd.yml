@@ -1,0 +1,83 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [development, main]
+  pull_request:
+    branches: [development, main]
+
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      # -----------------
+      # BACKEND
+      # -----------------
+      - name: Cache backend node_modules
+        uses: actions/cache@v3
+        with:
+          path: backend/node_modules
+          key: ${{ runner.os }}-backend-${{ hashFiles('backend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-backend-
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Lint backend
+        working-directory: ./backend
+        run: npm run lint --if-present
+
+      - name: Build backend
+        working-directory: ./backend
+        run: npm run build --if-present
+
+      # Deploy backend - Render (só main)
+      - name: Deploy Backend to Render
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl -X POST \
+          -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+          -H "Content-Type: application/json" \
+          -d '{"clearCache": true}' \
+          https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}
+
+     
+      # FRONTEND
+     
+      - name: Cache frontend node_modules
+        uses: actions/cache@v3
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-frontend-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-frontend-
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Lint frontend
+        working-directory: ./frontend
+        run: npm run lint --if-present
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build --if-present
+
+      # Deploy frontend - Vercel (só main)
+      - name: Deploy Frontend to Vercel
+        if: github.ref == 'refs/heads/main'
+        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm --org ${{ secrets.VERCEL_ORG_ID }} --project ${{ secrets.VERCEL_PROJECT_ID }}
+
+        
