@@ -49,6 +49,16 @@ no frontend:
 
 adicionar scripts nos package.json (ver se falta algo)
 
+criar service no render e tirar as chaves
+cirar project no vercel e tirar as chaves
+    Como é um monorepo e vercel n deixa alterar o diretorio para a pasta frontend , temos de alterar:
+        angular.json ("outputPath": "dist/frontend")
+        criar vercel.json (garante que build do Angular acontece na pasta frontend e o output vai para dist/frontend)
+        
+
+implementar cd e ci no msm yml
+
+
 
 
 Para fazer depois:
