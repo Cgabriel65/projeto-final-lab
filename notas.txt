@@ -50,6 +50,8 @@ no frontend:
 adicionar scripts nos package.json (ver se falta algo)
 
 criar service no render e tirar as chaves
+    tivemos de mudar o tsconfig para types: [node] para conseguir o delpoy no render 
+
 cirar project no vercel e tirar as chaves
     Como é um monorepo e vercel n deixa alterar o diretorio para a pasta frontend , temos de alterar:
         angular.json ("outputPath": "dist/frontend")
@@ -68,4 +70,40 @@ Para fazer depois:
     Criar Dockerfile (1 para frontend , 1 para backend)
     Dockercompose na raíz(para unir os 2 dockerfiles)
 
-    
+
+
+--------------------------
+Supabase, no SQL editor:
+
+CREATE TABLE profiles (
+  id UUID REFERENCES auth.users(id) PRIMARY KEY,
+  username TEXT NOT NULL UNIQUE,
+  bio TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Tabela de textos
+CREATE TABLE texts (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title TEXT NOT NULL,
+  body TEXT NOT NULL,
+  genre TEXT CHECK (genre IN ('short_story', 'poem', 'column', 'other')) NOT NULL,
+  author_id UUID REFERENCES profiles(id) NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Tabela de comentários
+CREATE TABLE comments (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  body TEXT NOT NULL,
+  author_id UUID REFERENCES profiles(id) NOT NULL,
+  text_id UUID REFERENCES texts(id) ON DELETE CASCADE NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+Ficheiros .env para desenvolvimento local
+Instalar dependencias supabase
+Criar supabase service
+*Adicionei script dev ao package.json
+
