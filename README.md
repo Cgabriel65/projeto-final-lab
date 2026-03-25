@@ -1,4 +1,4 @@
-# 📖 [App Name] — Collaborative Writing Platform
+# [App Name] — Collaborative Writing Platform
 
 A minimalist platform for writers to share short stories, poems, and chronicles, and receive feedback from the community. The focus is on writing and reading, without distractions.
 
@@ -6,14 +6,14 @@ A minimalist platform for writers to share short stories, poems, and chronicles,
 
 ---
 
-## 🚀 Production URL
+##  Production URL
 
 - **Backend API:** https://backend-projeto-lab.onrender.com
 - **Frontend:** Coming soon
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology | Hosting |
 |---|---|---|
@@ -26,7 +26,7 @@ A minimalist platform for writers to share short stories, poems, and chronicles,
 
 ---
 
-## 📦 Running Locally
+##  Running Locally
 
 ### Prerequisites
 - Node.js 24+
@@ -64,7 +64,7 @@ npm start
 
 ---
 
-## 🔐 Environment Variables
+## Environment Variables
 
 Create a `.env` file in the `backend` folder based on `.env.example`:
 
@@ -74,11 +74,10 @@ SUPABASE_SERVICE_KEY=
 PORT=3000
 ```
 
-> ⚠️ Never commit your `.env` file. Real values must never be pushed to GitHub.
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
 Base URL: `https://backend-projeto-lab.onrender.com`
 
@@ -86,7 +85,7 @@ Base URL: `https://backend-projeto-lab.onrender.com`
 | Method | Endpoint | Description | Auth Required |
 |---|---|---|---|
 | POST | `/auth/register` | Register a new user | No |
-| POST | `/auth/login` | Login and receive JWT token | No |
+| POST | `/auth/login` | Login | No |
 
 ### Texts
 | Method | Endpoint | Description | Auth Required |
@@ -110,7 +109,7 @@ Base URL: `https://backend-projeto-lab.onrender.com`
 
 ---
 
-## ✅ Implemented Features
+##  Implemented Features
 
 - User registration and login with email and password (Supabase Auth)
 - Full CRUD for texts (create, list, detail, edit, delete)
@@ -121,7 +120,7 @@ Base URL: `https://backend-projeto-lab.onrender.com`
 
 ---
 
-## 🗄️ Database Schema
+##  Database Schema
 
 ```sql
 profiles (id, username, bio, created_at)
@@ -131,19 +130,18 @@ comments (id, body, author_id, text_id, created_at)
 
 ---
 
-## 🔧 Design Decision
+##  Design Decision
 
-**ESModules over CommonJS**: The project uses ESModules (`"type": "module"` in `package.json` and `"module": "nodenext"` in `tsconfig.json`) instead of CommonJS. This decision aligns the backend with modern JavaScript standards and ensures consistency with how browsers and the frontend handle modules. The trade-off is that all local imports require explicit `.js` extensions, but this is a worthwhile cost for long-term compatibility.
 
----
-
-## 📸 Screenshots
-
-> Postman screenshots coming soon.
 
 ---
 
-## 🔄 CI/CD
+## Screenshots
+
+
+---
+
+## CI/CD
 
 This project uses GitHub Actions for continuous integration and deployment:
 
