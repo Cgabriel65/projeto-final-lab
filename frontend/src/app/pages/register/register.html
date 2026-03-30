@@ -1,0 +1,39 @@
+<div class="register-container">
+  <h1>Register</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" />
+      @if (form.get('email')?.invalid && form.get('email')?.touched) {
+        <span class="error">Valid email is required</span>
+      }
+    </div>
+
+    <div>
+      <label for="username">Username</label>
+      <input id="username" type="text" formControlName="username" />
+      @if (form.get('username')?.invalid && form.get('username')?.touched) {
+        <span class="error">Username must be at least 3 characters</span>
+      }
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" />
+      @if (form.get('password')?.invalid && form.get('password')?.touched) {
+        <span class="error">Password must be at least 6 characters</span>
+      }
+    </div>
+
+    @if (error) {
+      <p class="error">{{ error }}</p>
+    }
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Loading...' : 'Register' }}
+    </button>
+  </form>
+
+  <p>Already have an account? <a routerLink="/login">Login</a></p>
+</div>

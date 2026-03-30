@@ -1,0 +1,43 @@
+<div class="text-form-container">
+  <h1>{{ isEditMode ? 'Edit Text' : 'New Text' }}</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="title">Title</label>
+      <input id="title" type="text" formControlName="title" />
+      @if (form.get('title')?.invalid && form.get('title')?.touched) {
+        <span class="error">Title must be at least 3 characters</span>
+      }
+    </div>
+
+    <div>
+      <label for="genre">Genre</label>
+      <select id="genre" formControlName="genre">
+        <option value="">Select a genre</option>
+        <option value="short_story">Short Story</option>
+        <option value="poem">Poem</option>
+        <option value="column">Column</option>
+        <option value="other">Other</option>
+      </select>
+      @if (form.get('genre')?.invalid && form.get('genre')?.touched) {
+        <span class="error">Please select a genre</span>
+      }
+    </div>
+
+    <div>
+      <label for="body">Text</label>
+      <textarea id="body" formControlName="body" rows="15" placeholder="Write your text here..."></textarea>
+      @if (form.get('body')?.invalid && form.get('body')?.touched) {
+        <span class="error">Text must be at least 10 characters</span>
+      }
+    </div>
+
+    @if (error) {
+      <p class="error">{{ error }}</p>
+    }
+
+    <button type="submit" [disabled]="form.invalid || loading">
+      {{ loading ? 'Saving...' : isEditMode ? 'Update' : 'Publish' }}
+    </button>
+  </form>
+</div>

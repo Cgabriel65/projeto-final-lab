@@ -1,0 +1,15 @@
+<div class="home-container">
+  <h1>Latest Texts</h1>
+
+  @if (loading) {
+    <p>Loading...</p>
+  } @else if (error) {
+    <p class="error">{{ error }}</p>
+  } @else if (texts.length === 0) {
+    <p>No texts published yet.</p>
+  } @else {
+    @for (text of texts; track text.id) {
+      <app-text-card [text]="text" />
+    }
+  }
+</div>
