@@ -3,7 +3,7 @@ import { supabase } from "../supabase.js";
 
 const router = Router();
 
-// Listar todos os textos
+
 router.get("/", async (req, res) => {
   const { data, error } = await supabase
     .from("texts")
@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
   res.json(data);
 });
 
-// Ver detalhes de 1 texto
+
 router.get("/:id", async (req, res) => {
   const { data, error } = await supabase
     .from("texts")
@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
   res.json(data);
 });
 
-// Create
+
 router.post("/", async (req, res) => {
   const { title, body, genre, author_id } = req.body;
 
@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
   res.status(201).json(data);
 });
 
-// Edit
+
 router.put("/:id", async (req, res) => {
   const { title, body, genre } = req.body;
 
@@ -71,7 +71,7 @@ router.put("/:id", async (req, res) => {
   res.json(data);
 });
 
-// Delete
+
 router.delete("/:id", async (req, res) => {
   const { error } = await supabase
     .from("texts")

@@ -1,0 +1,45 @@
+<div class="text-detail-container">
+  @if (loading) {
+    <app-loading-spinner />
+  } @else if (error) {
+    <p class="error">{{ error }}</p>
+  } @else if (text) {
+    <article>
+      <h1>{{ text.title }}</h1>
+      <p class="meta">
+        by <a [routerLink]="['/authors', text.author_id]">{{ text.profiles?.username }}</a>
+        · {{ text.genre }}
+        · {{ text.created_at | date:'mediumDate' }}
+      </p>
+      <div class="body">{{ text.body }}</div>
+    </article>
+
+    @if (auth.isLoggedIn()) {
+      <div class="edit-actions">
+        <a [routerLink]="['/texts', text.id, 'edit']">Edit</a>
+      </div>
+    }
+
+    <section class="comments">
+      <h2>Comments</h2>
+
+      @if (auth.isLoggedIn()) {
+        <form [formGroup]="commentForm" (ngSubmit)="submitComment()">
+          <textarea formControlName="body" placeholder="Write a comment..."></textarea>
+          @if (commentForm.get('body')?.invalid && commentForm.get('body')?.touched) {
+            <span class="error">Comment cannot be empty</span>
+          }
+          <button type="submit" [disabled]="commentForm.invalid">Submit</button>
+        </form>
+      } @else {
+        <p><a routerLink="/login">Login</a> to comment</p>
+      }
+
+      @for (comment of comments; track comment.id) {
+        <app-comment-item [comment]="comment" />
+      }
+    </section>
+  }
+</div>
+
+
