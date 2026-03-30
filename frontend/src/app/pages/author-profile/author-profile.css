@@ -1,0 +1,33 @@
+.author-profile-container {
+  max-width: var(--max-width);
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.author-info {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.author-info h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.bio {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.member-since {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.author-texts h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}

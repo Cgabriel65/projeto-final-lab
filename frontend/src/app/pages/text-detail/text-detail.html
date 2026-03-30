@@ -14,7 +14,7 @@
       <div class="body">{{ text.body }}</div>
     </article>
 
-    @if (auth.isLoggedIn()) {
+    @if (auth.isLoggedIn() && isAuthor()) {
       <div class="edit-actions">
         <a [routerLink]="['/texts', text.id, 'edit']">Edit</a>
       </div>

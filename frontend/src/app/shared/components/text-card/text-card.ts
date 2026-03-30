@@ -11,4 +11,5 @@ import { Text } from '../../../core/models/text.model';
 })
 export class TextCard {
   @Input() text!: Text;
+  @Input() showAuthor = true;
 }
