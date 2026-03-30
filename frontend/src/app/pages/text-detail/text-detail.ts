@@ -33,6 +33,9 @@ export class TextDetail implements OnInit {
     body: new FormControl('', [Validators.required, Validators.minLength(1)])
   });
 
+  isAuthor(): boolean {
+  return this.auth.getCurrentUser()?.id === this.text?.author_id;
+}
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id')!;
 

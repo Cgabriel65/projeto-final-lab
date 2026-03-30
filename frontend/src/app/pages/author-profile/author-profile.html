@@ -19,7 +19,7 @@
         <p>No texts published yet.</p>
       } @else {
         @for (text of profile.texts; track text.id) {
-          <app-text-card [text]="text" />
+          <app-text-card [text]="text" [showAuthor]="false"/>
         }
       }
     </section>

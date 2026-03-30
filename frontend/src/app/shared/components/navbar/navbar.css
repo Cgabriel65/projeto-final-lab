@@ -1,0 +1,41 @@
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-serif);
+}
+
+nav a {
+  color: var(--color-text);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+
+nav a:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+nav button {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 0.3rem 0.9rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+nav button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+nav a:first-child {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-right: auto;
+}
+
