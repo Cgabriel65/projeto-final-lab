@@ -3,6 +3,9 @@
     <h2>{{ text.title }}</h2>
   </a>
   <p class="genre">{{ text.genre }}</p>
-  <p class="author">by <a [routerLink]="['/authors', text.author_id]">{{ text.profiles?.username }}</a></p>
+  @if (showAuthor) {
+    <p class="author">by <a [routerLink]="['/authors', text.author_id]">{{ text.profiles?.username }}</a></p>
+  }
   <p class="date">{{ text.created_at | date:'mediumDate' }}</p>
 </div>
+

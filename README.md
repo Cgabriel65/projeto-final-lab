@@ -1,4 +1,4 @@
-# [App Name] — Collaborative Writing Platform
+# BONFIRE — Collaborative Writing Platform
 
 A minimalist platform for writers to share short stories, poems, and chronicles, and receive feedback from the community. The focus is on writing and reading, without distractions.
 
