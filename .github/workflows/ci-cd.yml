@@ -75,9 +75,9 @@ jobs:
         working-directory: ./frontend
         run: npm run build --if-present
 
-      # Deploy frontend - Vercel (só main)
-      #- name: Deploy Frontend to Vercel
-      #  if: github.ref == 'refs/heads/main'
-      #  run: npx vercel --prod --cwd ./frontend --token ${{ secrets.VERCEL_TOKEN }} --confirm --org ${{ secrets.VERCEL_ORG_ID }} --project ${{ secrets.VERCEL_PROJECT_ID }}
+      #Deploy frontend - Vercel (só main)
+      - name: Deploy Frontend to Vercel
+        if: github.ref == 'refs/heads/main'
+        run: npx vercel --prod --cwd ./frontend --token ${{ secrets.VERCEL_TOKEN }} --confirm --org ${{ secrets.VERCEL_ORG_ID }} --project ${{ secrets.VERCEL_PROJECT_ID }}
 
         
