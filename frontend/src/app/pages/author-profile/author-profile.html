@@ -1,0 +1,27 @@
+<div class="author-profile-container">
+  @if (loading) {
+    <app-loading-spinner />
+  } @else if (error) {
+    <p class="error">{{ error }}</p>
+  } @else if (profile) {
+    <div class="author-info">
+      <h1>{{ profile.username }}</h1>
+      @if (profile.bio) {
+        <p class="bio">{{ profile.bio }}</p>
+      }
+      <p class="member-since">Member since {{ profile.created_at | date:'mediumDate' }}</p>
+    </div>
+
+    <section class="author-texts">
+      <h2>Texts by {{ profile.username }}</h2>
+
+      @if (profile.texts?.length === 0) {
+        <p>No texts published yet.</p>
+      } @else {
+        @for (text of profile.texts; track text.id) {
+          <app-text-card [text]="text" />
+        }
+      }
+    </section>
+  }
+</div>
