@@ -1,0 +1,42 @@
+.text-form-container {
+  max-width: var(--max-width);
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.text-form-container h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+label {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 400px;
+  line-height: 1.8;
+}
+
+button[type="submit"] {
+  align-self: flex-start;
+  padding: 0.75rem 2rem;
+  letter-spacing: 0.05em;
+}
