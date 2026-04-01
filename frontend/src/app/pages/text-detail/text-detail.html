@@ -16,7 +16,8 @@
 
     @if (auth.isLoggedIn() && isAuthor()) {
       <div class="edit-actions">
-        <a [routerLink]="['/texts', text.id, 'edit']">Edit</a>
+        <a class="action-btn" [routerLink]="['/texts', text.id, 'edit']">Edit</a>
+        <button class=" action-btn delete-btn" (click)="deleteText()">Delete</button>
       </div>
     }
 

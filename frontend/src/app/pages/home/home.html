@@ -1,14 +1,29 @@
 <div class="home-container">
-  <h1>Latest Texts</h1>
+
+  <div class="welcome">
+    <p>Welcome to Bonfire. A quiet place for stories.</p>
+    <p class="subtitle">Read, write, and share your tales.</p>
+  </div>
+  
+  <div class="filters">
+    @for (genre of genres; track genre.value) {
+      <button 
+        class="filter-btn"
+        [class.active]="activeFilter === genre.value"
+        (click)="filterByGenre(genre.value)">
+        {{ genre.label }}
+      </button>
+    }
+  </div>
 
   @if (loading) {
-    <p>Loading...</p>
+    <app-loading-spinner />
   } @else if (error) {
     <p class="error">{{ error }}</p>
-  } @else if (texts.length === 0) {
-    <p>No texts published yet.</p>
+  } @else if (filteredTexts.length === 0) {
+    <p class="empty">No texts found.</p>
   } @else {
-    @for (text of texts; track text.id) {
+    @for (text of filteredTexts; track text.id) {
       <app-text-card [text]="text" />
     }
   }

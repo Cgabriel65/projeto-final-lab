@@ -30,7 +30,7 @@ jobs:
 
       - name: Install backend dependencies
         working-directory: ./backend
-        run: npm ci
+        run: npm install --include=dev
 
       - name: Lint backend
         working-directory: ./backend
@@ -39,6 +39,10 @@ jobs:
       - name: Build backend
         working-directory: ./backend
         run: npm run build --if-present
+
+      - name: Test backend 
+        working-directory: ./backend
+        run: npm test
 
       # FRONTEND
       - name: Cache frontend node_modules
