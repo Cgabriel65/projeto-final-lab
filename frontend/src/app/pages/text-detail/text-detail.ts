@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { Texts } from '../../core/services/texts';
 import { Comments } from '../../core/services/comments';
 import { Text } from '../../core/models/text.model';
@@ -22,6 +22,8 @@ export class TextDetail implements OnInit {
   private route = inject(ActivatedRoute);
   private textsService = inject(Texts);
   private commentsService = inject(Comments);
+  private router = inject(Router);
+
   auth = inject(Auth);
 
   text: Text | null = null;
@@ -82,5 +84,14 @@ export class TextDetail implements OnInit {
         this.error = 'Failed to submit comment';
       }
     });
-  }
+  };
+
+  deleteText() {
+    if (!confirm('Are you sure you want to delete this text?')) return;
+
+    this.textsService.delete(this.text!.id).subscribe({
+      next: () => this.router.navigate(['/']),
+      error: () => this.error = 'Failed to delete text'
+    });
+  };
 }
