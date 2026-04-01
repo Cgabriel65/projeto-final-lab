@@ -22,6 +22,10 @@ app.use("/texts", textsRouter);
 app.use("/texts/:id/comments", commentsRouter);
 app.use("/authors", authorsRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Só arranca o servidor se for o entrypoint principal
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+export default app 

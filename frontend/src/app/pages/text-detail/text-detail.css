@@ -25,22 +25,46 @@ article h1 {
 }
 
 .edit-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
   margin-bottom: 2rem;
 }
 
-.edit-actions a {
+.action-btn {
   font-size: 0.9rem;
+  padding: 0.35rem 0.9rem;
   border: 1px solid var(--color-border);
-  padding: 0.3rem 0.9rem;
   color: var(--color-text-muted);
+  background: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+  font-family: var(--font-body);
+
+  cursor: pointer;
 }
 
-.edit-actions a:hover {
+/* hover edit */
+.action-btn:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
   text-decoration: none;
 }
 
+/* delete específico */
+.delete-btn {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.delete-btn:hover {
+  background-color: var(--color-error);
+  color: var(--color-surface);
+}
 .comments {
   border-top: 1px solid var(--color-border);
   padding-top: 2rem;
@@ -62,3 +86,4 @@ article h1 {
   resize: vertical;
   min-height: 100px;
 }
+

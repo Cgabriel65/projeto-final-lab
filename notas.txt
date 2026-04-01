@@ -115,3 +115,13 @@ ng serve
     Arranca um servidor local na porta 4200
 
 
+-------------
+testes unitarios
+
+app.spec.ts
+fazermock
+
+
+
+npm install -D vitest supertest
+npm install -D @types/supertest
