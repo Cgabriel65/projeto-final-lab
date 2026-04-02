@@ -1,0 +1,64 @@
+<div class="profile-container">
+  @if (loading) {
+    <app-loading-spinner />
+  } @else if (error) {
+    <p class="error">{{ error }}</p>
+  } @else if (profile) {
+
+    <div class="profile-header">
+      @if (!editMode) {
+        <h1>{{ profile.username }}</h1>
+        @if (profile.bio) {
+          <p class="bio">{{ profile.bio }}</p>
+        } @else {
+          <p class="bio-empty">No bio yet.</p>
+        }
+        <p class="member-since">Member since {{ profile.created_at | date:'mediumDate' }}</p>
+        <button class="action-btn" (click)="toggleEdit()">Edit Profile</button>
+      } @else {
+        <form [formGroup]="form" (ngSubmit)="saveProfile()">
+          <div>
+            <label for="username">Username</label>
+            <input id="username" type="text" formControlName="username" />
+            @if (form.get('username')?.invalid && form.get('username')?.touched) {
+              <span class="error">Username must be at least 3 characters</span>
+            }
+          </div>
+          <div>
+            <label for="bio">Bio</label>
+            <textarea id="bio" formControlName="bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+          </div>
+          @if (updateError) {
+            <p class="error">{{ updateError }}</p>
+          }
+          <div class="form-actions">
+            <button type="submit" [disabled]="form.invalid">Save</button>
+            <button type="button" class="action-btn" (click)="toggleEdit()">Cancel</button>
+          </div>
+        </form>
+      }
+    </div>
+
+    <section class="profile-texts">
+      <h2>My Texts</h2>
+      @if (profile.texts?.length === 0) {
+        <p class="empty">No texts published yet.</p>
+      } @else {
+        @for (text of profile.texts; track text.id) {
+          <app-text-card [text]="text" [showAuthor]="false" />
+        }
+      }
+    </section>
+
+    <section class="profile-liked">
+      <h2>Liked Texts</h2>
+      @if (likedTexts.length === 0) {
+        <p class="empty">No liked texts yet.</p>
+      } @else {
+        @for (text of likedTexts; track text.id) {
+          <app-text-card [text]="text" />
+        }
+      }
+    </section>
+  }
+</div>
