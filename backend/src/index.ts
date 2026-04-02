@@ -5,6 +5,7 @@ import authRouter from "./routes/auth.js";
 import textsRouter from "./routes/texts.js";
 import commentsRouter from "./routes/comments.js";
 import authorsRouter from "./routes/authors.js";
+import likesRouter from "./routes/likes.js";
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.use("/auth", authRouter);
 app.use("/texts", textsRouter);
 app.use("/texts/:id/comments", commentsRouter);
 app.use("/authors", authorsRouter);
+app.use("/texts/:id/likes", likesRouter);
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
