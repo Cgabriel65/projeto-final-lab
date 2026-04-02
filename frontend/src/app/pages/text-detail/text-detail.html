@@ -11,7 +11,9 @@
         · {{ text.genre }}
         · {{ text.created_at | date:'mediumDate' }}
       </p>
-      <div class="body">{{ text.body }}</div>
+      <div class="body">
+         <p>{{ text.body }}</p>
+      </div>
     </article>
 
     @if (auth.isLoggedIn() && isAuthor()) {

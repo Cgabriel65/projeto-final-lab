@@ -4,6 +4,19 @@
   padding: 0 1.5rem;
 }
 
+article {
+  background-color: var(--color-surface); /* fundo claro e quente */
+  border: 1px solid var(--color-border); /* borda sutil */
+  padding: 2rem 2.5rem; /* espaçamento generoso */
+  border-radius: 8px; /* cantos suaves */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* sombra leve */
+  max-width: 100%; /* garante que não ultrapassa a container */
+  overflow-wrap: break-word; /* garante que palavras longas quebram */
+  word-break: break-word; /* compatibilidade extra */
+  line-height: 1.9; /* mantém boa legibilidade */
+  margin-bottom: 3rem; /* espaço para seção de comentários */
+}
+
 article h1 {
   font-size: 2.2rem;
   margin-bottom: 0.75rem;
@@ -15,13 +28,22 @@ article h1 {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--color-border);
+
+
 }
+
+.meta a:hover {
+  text-decoration: underline;
+}
+
+
 
 .body {
   font-size: 1.1rem;
   line-height: 2;
   white-space: pre-wrap;
   margin-bottom: 3rem;
+ 
 }
 
 .edit-actions {
