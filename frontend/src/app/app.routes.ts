@@ -6,6 +6,7 @@ import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { TextForm } from './pages/text-form/text-form';
 import { authGuard } from './core/guards/auth-guard';
+import { ProfilePage } from './pages/profile/profile';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -15,7 +16,9 @@ export const routes: Routes = [
     { path: 'login', component: Login },
     { path: 'register', component: Register },
     { path: 'texts/:id/edit', component: TextForm, canActivate: [authGuard] },
-    { path: '**', redirectTo: '' }
+    { path: 'profile', component: ProfilePage, canActivate: [authGuard] },
+    { path: '**', redirectTo: '' },
+    
 
 
 ];
