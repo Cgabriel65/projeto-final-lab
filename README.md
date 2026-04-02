@@ -8,7 +8,7 @@ A minimalist platform for writers to share short stories, poems, and chronicles,
 
 ##  Production URL
 
-- **Frontend:** https://bonfire-1n8zkw7kc-cgabriel65s-projects.vercel.app
+- **Frontend:** https://bonfire-rho.vercel.app/
 - **Backend API:** https://backend-projeto-lab.onrender.com
 
 ---
