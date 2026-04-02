@@ -32,7 +32,7 @@ export class Texts {
   update(id: string, data: { title: string; body: string; genre: string }) {
     return this.http.put<Text>(`${this.apiUrl}/texts/${id}`, data, { headers: this.getHeaders() });
   }
-
+  //
   delete(id: string) {
     return this.http.delete(`${this.apiUrl}/texts/${id}`, { headers: this.getHeaders() });
   }

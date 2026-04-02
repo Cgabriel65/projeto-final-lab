@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { supabase } from "../supabase.js";
-
+//
 const router = Router({ mergeParams: true });
 
 // Contar likes de um texto
