@@ -8,8 +8,8 @@ A minimalist platform for writers to share short stories, poems, and chronicles,
 
 ##  Production URL
 
+- **Frontend:** https://bonfire-1n8zkw7kc-cgabriel65s-projects.vercel.app
 - **Backend API:** https://backend-projeto-lab.onrender.com
-- **Frontend:** Coming soon
 
 ---
 
@@ -102,10 +102,25 @@ Base URL: `https://backend-projeto-lab.onrender.com`
 | GET | `/texts/:id/comments` | List comments for a text | No |
 | POST | `/texts/:id/comments` | Add a comment to a text | Yes |
 
+### Likes
+| Method | Endpoint | Description | Auth Required |
+|---|---|---|---|
+| GET | `/texts/:id/likes` | Get like count for a text | No |
+| GET | `/texts/:id/likes/:userId` | Check if user liked a text | No |
+| POST | `/texts/:id/likes` | Like a text | Yes |
+| DELETE | `/texts/:id/likes` | Unlike a text | Yes |
+
 ### Authors
 | Method | Endpoint | Description | Auth Required |
 |---|---|---|---|
 | GET | `/authors/:id` | Get author profile with their texts | No |
+
+### Profile
+| Method | Endpoint | Description | Auth Required |
+|---|---|---|---|
+| GET | `/profile/:id` | Get own profile | Yes |
+| PUT | `/profile/:id` | Update username and bio | Yes |
+| GET | `/profile/:id/liked-texts` | Get texts liked by user | Yes |
 
 ---
 
@@ -113,10 +128,14 @@ Base URL: `https://backend-projeto-lab.onrender.com`
 
 - User registration and login with email and password (Supabase Auth)
 - Full CRUD for texts (create, list, detail, edit, delete)
+- Filter texts by genre (Short Story, Poem, Column, Other)
+- Like/unlike system for texts
 - Comment system per text
-- Author profile with all published texts
+- Public author profile with all published texts
+- Personal profile page with bio editing and liked texts
 - Row Level Security (RLS) policies on all tables
-- CI/CD pipeline with GitHub Actions (lint + build + deploy)
+- CI/CD pipeline with GitHub Actions (lint + build + test + deploy)
+- 3 unit tests passing
 
 ---
 
@@ -126,12 +145,14 @@ Base URL: `https://backend-projeto-lab.onrender.com`
 profiles (id, username, bio, created_at)
 texts    (id, title, body, genre, author_id, created_at, updated_at)
 comments (id, body, author_id, text_id, created_at)
+likes    (id, user_id, text_id, created_at)
 ```
 
 ---
 
 ##  Design Decision
 
+**Reusable TextForm component**: Instead of creating separate components for creating and editing texts, a single `TextForm` component handles both cases. When a `textId` is present in the route, it switches to edit mode — loading existing data and calling `PUT`. Otherwise it renders an empty form and calls `POST`. This reduces code duplication and is easier to maintain.
 
 
 ---
@@ -145,8 +166,8 @@ comments (id, body, author_id, text_id, created_at)
 
 This project uses GitHub Actions for continuous integration and deployment:
 
-- ✅ Lint (backend + frontend)
-- ✅ Build (backend + frontend)
-- ✅ Auto-deploy to Render on push to `main`
+- ✅ `build-and-lint` — runs on every push to `development` and `main`: lint, build and unit tests for both backend and frontend
+- ✅ `deploy` — runs only on `main` after `build-and-lint` passes: deploys backend to Render and frontend to Vercel
+
 
 ![CI/CD Badge](https://github.com/Cgabriel65/projeto-final-lab/actions/workflows/ci-cd.yml/badge.svg)
