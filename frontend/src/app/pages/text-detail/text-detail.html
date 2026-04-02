@@ -12,14 +12,20 @@
         · {{ text.created_at | date:'mediumDate' }}
       </p>
       <div class="body">
-         <p>{{ text.body }}</p>
+        <p>{{ text.body }}</p>
       </div>
     </article>
+
+    <div class="like-actions">
+      <button class="like-btn" [class.liked]="hasLiked" (click)="toggleLike()">
+        {{ hasLiked ? '♥' : '♡' }} {{ likeCount }}
+      </button>
+    </div>
 
     @if (auth.isLoggedIn() && isAuthor()) {
       <div class="edit-actions">
         <a class="action-btn" [routerLink]="['/texts', text.id, 'edit']">Edit</a>
-        <button class=" action-btn delete-btn" (click)="deleteText()">Delete</button>
+        <button class="action-btn delete-btn" (click)="deleteText()">Delete</button>
       </div>
     }
 
@@ -44,5 +50,3 @@
     </section>
   }
 </div>
-
-

@@ -109,3 +109,29 @@ article h1 {
   min-height: 100px;
 }
 
+.like-actions {
+  margin-bottom: 1.5rem;
+}
+
+.like-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  padding: 0.35rem 0.9rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.like-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.like-btn.liked {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
