@@ -3,11 +3,11 @@ import { supabase } from "../supabase.js";
 
 const router = Router();
 
-// Registo
+
 router.post("/register", async (req, res) => {
   const { email, password, username } = req.body;
 
-  // Cria utilizador no Supabase Auth
+ 
   const { data, error } = await supabase.auth.signUp({ email, password });
 
   if (error) {
@@ -15,7 +15,7 @@ router.post("/register", async (req, res) => {
     return;
   }
 
-  // Cria perfil na tabela profiles
+
   const { error: profileError } = await supabase
     .from("profiles")
     .insert({ id: data.user!.id, username });
@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
   res.status(201).json({ message: "User created successfully" });
 });
 
-// Login
+
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 

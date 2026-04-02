@@ -3,7 +3,7 @@ import { supabase } from "../supabase.js";
 
 const router = Router({ mergeParams: true });
 
-// Listar comentários de um texto
+
 router.get("/", async (req, res) => {
     const textId = (req.params as { id: string }).id;
     const { data, error } = await supabase
@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
     res.json(data);
 });
 
-// Criar comentário num texto
+
 router.post("/", async (req, res) => {
     const textId = (req.params as { id: string }).id;
     const { body, author_id } = req.body;

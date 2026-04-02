@@ -107,3 +107,21 @@ Instalar dependencias supabase
 Criar supabase service
 *Adicionei script dev ao package.json
 
+-----------------------
+Frontend:
+cd frontend
+ng serve
+    Compila o projeto TypeScript → JavaScript
+    Arranca um servidor local na porta 4200
+
+
+-------------
+testes unitarios
+
+app.spec.ts
+fazermock
+
+
+
+npm install -D vitest supertest
+npm install -D @types/supertest

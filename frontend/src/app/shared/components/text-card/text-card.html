@@ -1,0 +1,33 @@
+<article class="text-card">
+
+  <span class="genre-badge" [ngClass]="text.genre">
+    {{ formatGenre(text.genre) }}
+  </span>
+
+  <a [routerLink]="['/texts', text.id]" class="title-link">
+    <h2>{{ text.title }}</h2>
+  </a>
+
+  <div class="meta-container">
+    @if (showAuthor) {
+      <p class="author">
+        by
+        <a [routerLink]="['/authors', text.author_id]">
+          {{ text.profiles?.username }}
+        </a>
+        · {{ text.created_at | date:'mediumDate' }}
+      </p>
+    } @else {
+      <p class="date">
+        {{ text.created_at | date:'mediumDate' }}
+      </p>
+    }
+
+    <div class="line-gold"></div>
+  </div>
+
+  <p class="excerpt">
+    {{ text.body | slice:0:220 }}...
+  </p>
+
+</article>
