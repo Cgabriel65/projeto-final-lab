@@ -6,6 +6,7 @@ import textsRouter from "./routes/texts.js";
 import commentsRouter from "./routes/comments.js";
 import authorsRouter from "./routes/authors.js";
 import likesRouter from "./routes/likes.js";
+import profileRouter from "./routes/profile.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use("/texts", textsRouter);
 app.use("/texts/:id/comments", commentsRouter);
 app.use("/authors", authorsRouter);
 app.use("/texts/:id/likes", likesRouter);
+app.use("/profile", profileRouter);
 
 
 // Só arranca o servidor se for o entrypoint principal
