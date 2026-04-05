@@ -1,11 +1,20 @@
 nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  justify-content: space-between;
   padding: 1rem 2rem;
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
   font-family: var(--font-serif);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 nav a {
@@ -19,6 +28,20 @@ nav a:hover {
   text-decoration: none;
 }
 
+nav a.brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+}
+
+nav a.brand:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
 nav button {
   background: none;
   border: 1px solid var(--color-border);
@@ -26,6 +49,7 @@ nav button {
   padding: 0.3rem 0.9rem;
   font-size: 0.9rem;
   cursor: pointer;
+  font-family: var(--font-serif);
 }
 
 nav button:hover {
@@ -33,9 +57,27 @@ nav button:hover {
   color: var(--color-accent);
 }
 
-nav a:first-child {
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin-right: auto;
-}
 
+
+@media (max-width: 767px) {
+  nav {
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    font-size: 0.85rem;
+  }
+
+  nav button {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.7rem;
+  }
+  
+}

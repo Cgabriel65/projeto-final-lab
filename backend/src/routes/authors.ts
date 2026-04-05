@@ -3,7 +3,7 @@ import { supabase } from "../supabase.js";
 
 const router = Router();
 
-
+//Devolve perfil publico, com info do autor e os textos do mesmo
 router.get("/:id", async (req, res) => {
   const { data, error } = await supabase
     .from("profiles")
