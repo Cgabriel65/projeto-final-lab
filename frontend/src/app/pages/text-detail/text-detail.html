@@ -44,9 +44,11 @@
         <p><a routerLink="/login">Login</a> to comment</p>
       }
 
-      @for (comment of comments; track comment.id) {
-        <app-comment-item [comment]="comment" />
-      }
+      <div class="comments-list">
+        @for (comment of comments; track comment.id) {
+          <app-comment-item [comment]="comment" />
+        }
+      </div>
     </section>
   }
 </div>

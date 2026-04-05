@@ -23,8 +23,10 @@
   } @else if (filteredTexts.length === 0) {
     <p class="empty">No texts found.</p>
   } @else {
-    @for (text of filteredTexts; track text.id) {
-      <app-text-card [text]="text" />
-    }
+    <section class="texts-list" aria-label="Texts">
+      @for (text of filteredTexts; track text.id) {
+        <app-text-card [text]="text" />
+      }
+    </section>
   }
 </div>

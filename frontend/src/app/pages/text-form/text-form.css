@@ -40,3 +40,24 @@ button[type="submit"] {
   padding: 0.75rem 2rem;
   letter-spacing: 0.05em;
 }
+
+@media (max-width: 767px) {
+  .text-form-container {
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .text-form-container h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  textarea {
+    min-height: 250px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    align-self: stretch;
+  }
+}

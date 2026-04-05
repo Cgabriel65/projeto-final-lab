@@ -17,7 +17,7 @@ A minimalist platform for writers to share short stories, poems, and chronicles,
 
 | Layer | Technology | Hosting |
 |---|---|---|
-| Frontend | Angular 21+ with TypeScript | Vercel (coming soon) |
+| Frontend | Angular 21+ with TypeScript | Vercel |
 | Backend | Node.js 24+ with Express | Render.com |
 | Database | Supabase (PostgreSQL) | Supabase Cloud |
 | Auth | Supabase Auth (JWT) | Supabase Cloud |
@@ -154,11 +154,16 @@ likes    (id, user_id, text_id, created_at)
 
 **Reusable TextForm component**: Instead of creating separate components for creating and editing texts, a single `TextForm` component handles both cases. When a `textId` is present in the route, it switches to edit mode — loading existing data and calling `PUT`. Otherwise it renders an empty form and calls `POST`. This reduces code duplication and is easier to maintain.
 
+**Separation of public and private profile routes**: The API exposes both `/authors/:id` (public, read-only) and `/profile/:id` (private, read-write). This follows REST conventions and keeps public and authenticated concerns clearly separated.
 
 ---
 
 ## Screenshots
 
+![Bonfire Homepage Screenshot](docs/Bonfire_Home.JPG)
+![Bonfire Text Detail Screenshot](docs/Bonfire_Text_Detail.JPG)
+![Bonfire Text Form Screenshot](docs/Bonfire_Text_Form.JPG)
+![Bonfire Profile Screenshot](docs/Bonfire_Profile.JPG)
 
 ---
 
