@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Auth } from '../../core/services/auth';
@@ -12,6 +12,7 @@ import { Auth } from '../../core/services/auth';
 export class Register {
   private auth = inject(Auth);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
 
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -33,10 +34,12 @@ export class Register {
     this.auth.register(email!, password!, username!).subscribe({
       next: () => {
         this.router.navigate(['/login']);
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.error = err.error?.error || 'Registration failed';
         this.loading = false;
+        this.cdr.detectChanges();
       }
     });
   }
