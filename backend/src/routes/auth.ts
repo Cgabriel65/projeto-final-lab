@@ -7,7 +7,7 @@ const router = Router();
 router.post("/register", async (req, res) => {
   const { email, password, username } = req.body;
 
-  //verifica se user já existe
+  // Verificar se username já existe
   const { data: existing } = await supabase
     .from("profiles")
     .select("id")
@@ -19,7 +19,7 @@ router.post("/register", async (req, res) => {
     return;
   }
 
- 
+  // Criar utilizador no Auth
   const { data, error } = await supabase.auth.signUp({ email, password });
 
   if (error) {
@@ -27,10 +27,16 @@ router.post("/register", async (req, res) => {
     return;
   }
 
+  // Verificar se email já existe
+  if (!data.user?.identities?.length) {
+    res.status(400).json({ error: "Email already registered" });
+    return;
+  }
 
+  // Criar perfil
   const { error: profileError } = await supabase
     .from("profiles")
-    .insert({ id: data.user!.id, username });  //adiciona linha à tabela profiles(separada da auth)
+    .insert({ id: data.user!.id, username });
 
   if (profileError) {
     res.status(400).json({ error: profileError.message });
