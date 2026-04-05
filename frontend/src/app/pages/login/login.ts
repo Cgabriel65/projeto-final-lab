@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Auth } from '../../core/services/auth';
@@ -12,6 +12,7 @@ import { Auth } from '../../core/services/auth';
 export class Login {
   private auth = inject(Auth);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
 
   // Formulário sem FormBuilder
   form = new FormGroup({
@@ -34,10 +35,12 @@ export class Login {
       next: (response) => {
         this.auth.setUser(response.user, response.token);
         this.router.navigate(['/']);
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.error = err.error?.error || 'Login failed';
         this.loading = false;
+        this.cdr.detectChanges();
       }
     });
   }
