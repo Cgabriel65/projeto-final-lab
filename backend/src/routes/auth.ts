@@ -7,6 +7,18 @@ const router = Router();
 router.post("/register", async (req, res) => {
   const { email, password, username } = req.body;
 
+  //verifica se user já existe
+  const { data: existing } = await supabase
+    .from("profiles")
+    .select("id")
+    .eq("username", username)
+    .maybeSingle();
+
+  if (existing) {
+    res.status(400).json({ error: "Username already taken" });
+    return;
+  }
+
  
   const { data, error } = await supabase.auth.signUp({ email, password });
 
