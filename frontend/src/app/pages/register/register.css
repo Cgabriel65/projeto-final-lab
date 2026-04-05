@@ -44,3 +44,15 @@ button[type="submit"] {
   font-size: 0.9rem;
   color: var(--color-text-muted);
 }
+
+@media (max-width: 767px) {
+  .register-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  .register-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}

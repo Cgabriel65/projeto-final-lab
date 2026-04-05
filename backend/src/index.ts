@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "dotenv/config"; //carrega automaticamente variavies do .env para process.env
 import express from "express";
 import cors from "cors";
 import authRouter from "./routes/auth.js";
@@ -10,12 +10,12 @@ import profileRouter from "./routes/profile.js";
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+app.use(cors()); //permite que frontend aceda ao backend, sem isto browser bloqueia pedidos (portas diferentes)
+app.use(express.json()); //permite que servidor leia JSON no body dos pedidos
 
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
+app.get("/", (req, res) => {  //health check
   res.send("API running");
 });
 
@@ -27,8 +27,8 @@ app.use("/texts/:id/likes", likesRouter);
 app.use("/profile", profileRouter);
 
 
-// Só arranca o servidor se for o entrypoint principal
-if (process.env.NODE_ENV !== 'test') {
+
+if (process.env.NODE_ENV !== 'test') { //só arranca servicodr se não estiver em modo de teste
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });

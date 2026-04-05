@@ -3,7 +3,7 @@ import { supabase } from "../supabase.js";
 
 const router = Router();
 
-// Ver perfil
+// Ver perfil privado do proprio usar
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
 

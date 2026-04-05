@@ -5,7 +5,7 @@
     <p class="error">{{ error }}</p>
   } @else if (profile) {
 
-    <div class="profile-header">
+    <header class="profile-header">
       @if (!editMode) {
         <h1>{{ profile.username }}</h1>
         @if (profile.bio) {
@@ -37,16 +37,18 @@
           </div>
         </form>
       }
-    </div>
+    </header>
 
-    <section class="profile-texts">
+    <section class="profile-texts" aria-label="My Texts">
       <h2>My Texts</h2>
       @if (profile.texts?.length === 0) {
         <p class="empty">No texts published yet.</p>
       } @else {
-        @for (text of profile.texts; track text.id) {
-          <app-text-card [text]="text" [showAuthor]="false" />
-        }
+        <div class="texts-list">
+          @for (text of profile.texts; track text.id) {
+            <app-text-card [text]="text" [showAuthor]="false" />
+          }
+        </div>
       }
     </section>
 
@@ -55,9 +57,11 @@
       @if (likedTexts.length === 0) {
         <p class="empty">No liked texts yet.</p>
       } @else {
-        @for (text of likedTexts; track text.id) {
-          <app-text-card [text]="text" />
-        }
+        <div class="texts-list">
+          @for (text of likedTexts; track text.id) {
+            <app-text-card [text]="text" />
+          }
+        </div>
       }
     </section>
   }

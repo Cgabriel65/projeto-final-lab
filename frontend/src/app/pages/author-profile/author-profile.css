@@ -30,4 +30,60 @@
 .author-texts h2 {
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.empty {
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.texts-list {
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.texts-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.texts-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.texts-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 3px;
+}
+
+.texts-list::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent);
+}
+
+@media (max-width: 767px) {
+  .author-profile-container {
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .author-info {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .author-info h1 {
+    font-size: 1.6rem;
+  }
+
+  .author-texts h2 {
+    font-size: 1.1rem;
+  }
+
+  .texts-list {
+    max-height: 40vh;
+  }
 }

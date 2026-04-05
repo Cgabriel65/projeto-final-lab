@@ -3,7 +3,7 @@ import { supabase } from "../supabase.js";
 
 const router = Router();
 
-
+//Register
 router.post("/register", async (req, res) => {
   const { email, password, username } = req.body;
 
@@ -18,7 +18,7 @@ router.post("/register", async (req, res) => {
 
   const { error: profileError } = await supabase
     .from("profiles")
-    .insert({ id: data.user!.id, username });
+    .insert({ id: data.user!.id, username });  //adiciona linha à tabela profiles(separada da auth)
 
   if (profileError) {
     res.status(400).json({ error: profileError.message });
@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
   res.status(201).json({ message: "User created successfully" });
 });
 
-
+//Login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
