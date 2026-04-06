@@ -51,6 +51,17 @@
       }
     </header>
 
+    <div class="kpis">
+      <div class="kpi">
+        <span class="kpi-value">{{ profile.texts?.length ?? 0 }}</span>
+        <span class="kpi-label">Texts</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-value">{{ likedTexts.length }}</span>
+        <span class="kpi-label">Liked</span>
+      </div>
+    </div>
+
     <section class="profile-texts" aria-label="My Texts">
       <h2>My Texts</h2>
       @if (profile.texts?.length === 0) {
