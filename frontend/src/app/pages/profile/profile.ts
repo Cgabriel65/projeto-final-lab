@@ -29,8 +29,8 @@ export class ProfilePage implements OnInit {
   updateSuccess = false;
 
   form = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    bio: new FormControl('')
+    username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
+    bio: new FormControl('',[Validators.maxLength(1000)])
   });
 
   ngOnInit() {

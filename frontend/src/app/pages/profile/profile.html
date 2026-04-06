@@ -20,16 +20,28 @@
           <div>
             <label for="username">Username</label>
             <input id="username" type="text" formControlName="username" />
-            @if (form.get('username')?.invalid && form.get('username')?.touched) {
+            @if (form.get('username')?.errors?.['required'] && form.get('username')?.touched) {
+              <span class="error">Username is required</span>
+            }
+            @if (form.get('username')?.errors?.['minlength'] && form.get('username')?.touched) {
               <span class="error">Username must be at least 3 characters</span>
+            }
+            @if (form.get('username')?.errors?.['maxlength'] && form.get('username')?.touched) {
+              <span class="error">Username cannot exceed 30 characters</span>
             }
           </div>
           <div>
             <label for="bio">Bio</label>
             <textarea id="bio" formControlName="bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+            @if (form.get('bio')?.errors?.['maxlength'] && form.get('bio')?.touched) {
+              <span class="error">Bio cannot exceed 1000 characters</span>
+            }
           </div>
           @if (updateError) {
             <p class="error">{{ updateError }}</p>
+          }
+          @if (updateSuccess) {
+            <p class="success">Profile updated successfully!</p>
           }
           <div class="form-actions">
             <button type="submit" [disabled]="form.invalid">Save</button>

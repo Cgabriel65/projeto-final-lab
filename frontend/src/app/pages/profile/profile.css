@@ -150,4 +150,9 @@ label {
   .texts-list {
     max-height: 40vh;
   }
+
+  .success {
+    color: var(--color-teal, #0f6e56);
+    font-size: 0.9rem;
+  }
 }
