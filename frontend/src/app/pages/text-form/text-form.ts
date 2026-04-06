@@ -22,8 +22,8 @@ export class TextForm implements OnInit {
   error = '';
 
   form = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    body: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+    body: new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(50000)]),
     genre: new FormControl('', [Validators.required])
   });
 
@@ -48,6 +48,7 @@ export class TextForm implements OnInit {
   }
 
   onSubmit() {
+
     if (this.form.invalid) return;
 
     this.loading = true;
@@ -57,6 +58,7 @@ export class TextForm implements OnInit {
     const { title, body, genre } = this.form.value;
 
     if (this.isEditMode && this.textId) {
+
       this.textsService.update(this.textId, {
         title: title!,
         body: body!,
@@ -68,7 +70,9 @@ export class TextForm implements OnInit {
           this.loading = false;
         }
       });
+
     } else {
+
       this.textsService.create({
         title: title!,
         body: body!,

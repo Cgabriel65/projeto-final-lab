@@ -5,7 +5,10 @@
     <div>
       <label for="email">Email</label>
       <input id="email" type="email" formControlName="email" />
-      @if (form.get('email')?.invalid && form.get('email')?.touched) {
+      @if (form.get('email')?.errors?.['required'] && form.get('email')?.touched) {
+        <span class="error">Email is required</span>
+      }
+      @if (form.get('email')?.errors?.['email'] && form.get('email')?.touched) {
         <span class="error">Valid email is required</span>
       }
     </div>
@@ -13,16 +16,28 @@
     <div>
       <label for="username">Username</label>
       <input id="username" type="text" formControlName="username" />
-      @if (form.get('username')?.invalid && form.get('username')?.touched) {
+      @if (form.get('username')?.errors?.['required'] && form.get('username')?.touched) {
+        <span class="error">Username is required</span>
+      }
+      @if (form.get('username')?.errors?.['minlength'] && form.get('username')?.touched) {
         <span class="error">Username must be at least 3 characters</span>
+      }
+      @if (form.get('username')?.errors?.['maxlength'] && form.get('username')?.touched) {
+        <span class="error">Username cannot exceed 30 characters</span>
       }
     </div>
 
     <div>
       <label for="password">Password</label>
       <input id="password" type="password" formControlName="password" />
-      @if (form.get('password')?.invalid && form.get('password')?.touched) {
+      @if (form.get('password')?.errors?.['required'] && form.get('password')?.touched) {
+        <span class="error">Password is required</span>
+      }
+      @if (form.get('password')?.errors?.['minlength'] && form.get('password')?.touched) {
         <span class="error">Password must be at least 6 characters</span>
+      }
+      @if (form.get('password')?.errors?.['maxlength'] && form.get('password')?.touched) {
+        <span class="error">Password cannot exceed 72 characters</span>
       }
     </div>
 
