@@ -23,6 +23,7 @@ A minimalist platform for writers to share short stories, poems, and chronicles,
 | Auth | Supabase Auth (JWT) | Supabase Cloud |
 | Repository | Git + GitHub | GitHub |
 | CI/CD | GitHub Actions | GitHub Actions |
+| Containerization | Docker + Docker Compose | Local |
 
 ---
 
@@ -62,6 +63,27 @@ npm install
 npm start
 ```
 
+### Docker (recommended)
+ 
+```bash
+# Clone the repository
+git clone https://github.com/Cgabriel65/projeto-final-lab.git
+cd projeto-final-lab
+ 
+# Create environment file at the root
+cp backend/.env.example .env
+# Fill in your values in .env
+ 
+# Build and run all services
+docker compose up --build
+ 
+# On subsequent runs (no code changes)
+docker compose up
+```
+ 
+- **Frontend:** http://localhost
+- **Backend:** http://localhost:3000
+ 
 ---
 
 ## Environment Variables
@@ -132,8 +154,11 @@ Base URL: `https://backend-projeto-lab.onrender.com`
 - Like/unlike system for texts
 - Comment system per text
 - Public author profile with all published texts
-- Personal profile page with bio editing and liked texts
+- Personal profile page with bio editing and liked texts and KPIs
+- Dark mode toggle (preference saved in localStorage)
+- Responsive design (mobile-friendly at 767px)
 - Row Level Security (RLS) policies on all tables
+- Docker support for local development
 - CI/CD pipeline with GitHub Actions (lint + build + test + deploy)
 - 3 unit tests passing
 
@@ -156,6 +181,7 @@ likes    (id, user_id, text_id, created_at)
 
 **Separation of public and private profile routes**: The API exposes both `/authors/:id` (public, read-only) and `/profile/:id` (private, read-write). This follows REST conventions and keeps public and authenticated concerns clearly separated.
 
+CI/CD with two separate jobs: The GitHub Actions pipeline is split into build-and-lint (runs on all branches) and deploy (runs only on main after the first job passes). This ensures that broken code is never deployed to production.
 ---
 
 ## Screenshots
