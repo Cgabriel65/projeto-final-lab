@@ -5,8 +5,14 @@
     <div>
       <label for="title">Title</label>
       <input id="title" type="text" formControlName="title" />
-      @if (form.get('title')?.invalid && form.get('title')?.touched) {
+      @if (form.get('title')?.errors?.['required'] && form.get('title')?.touched) {
+        <span class="error">Title is required</span>
+      }
+      @if (form.get('title')?.errors?.['minlength'] && form.get('title')?.touched) {
         <span class="error">Title must be at least 3 characters</span>
+      }
+      @if (form.get('title')?.errors?.['maxlength'] && form.get('title')?.touched) {
+        <span class="error">Title cannot exceed 100 characters</span>
       }
     </div>
 
@@ -27,8 +33,14 @@
     <div>
       <label for="body">Text</label>
       <textarea id="body" formControlName="body" rows="15" placeholder="Write your text here..."></textarea>
-      @if (form.get('body')?.invalid && form.get('body')?.touched) {
-        <span class="error">Text must be at least 10 characters</span>
+      @if (form.get('body')?.errors?.['required'] && form.get('body')?.touched) {
+        <span class="error">Text is required</span>
+      }
+      @if (form.get('body')?.errors?.['minlength'] && form.get('body')?.touched) {
+        <span class="error">Text must be at least 50 characters</span>
+      }
+      @if (form.get('body')?.errors?.['maxlength'] && form.get('body')?.touched) {
+        <span class="error">Text cannot exceed 50000 characters</span>
       }
     </div>
 
