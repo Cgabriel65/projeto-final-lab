@@ -7,10 +7,16 @@
     @if (auth.isLoggedIn()) {
       <a routerLink="/texts/new">New Text</a>
       <a routerLink="/profile">Profile</a>
+      <button class="theme-btn" (click)="toggleTheme()" [title]="isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+        {{ isDark ? '☀' : '☾' }}
+      </button>
       <button (click)="logout()">Logout</button>
     } @else {
       <a routerLink="/login">Login</a>
       <a routerLink="/register">Register</a>
+      <button class="theme-btn" (click)="toggleTheme()" [title]="isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+        {{ isDark ? '☀' : '☾' }}
+      </button>
     }
   </div>
 </nav>
